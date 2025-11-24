@@ -1,8 +1,13 @@
 FROM python:3-alpine
 
-WORKDIR /opt/docs/
+RUN pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir Sphinx sphinx_bootstrap_theme && \
+    rm -rf /root/.cache
 
-RUN pip install --no-cache-dir -U Sphinx sphinx_bootstrap_theme
+WORKDIR /opt/docs/
+RUN adduser -D maz
+USER maz
+
 
 ENTRYPOINT [ "sphinx-build" ]
 CMD [ "--version" ]
