@@ -1,7 +1,11 @@
 FROM python:3-alpine
 
 RUN pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir Sphinx sphinx_bootstrap_theme && \
+    pip install --no-cache-dir \
+        Sphinx \
+        sphinx_bootstrap_theme \
+        myst-parser \
+        sphinxcontrib-mermaid && \
     rm -rf /root/.cache
 
 WORKDIR /opt/docs/
